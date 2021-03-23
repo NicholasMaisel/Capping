@@ -1,0 +1,59 @@
+import spotify_authenticate
+import pandas as pd
+
+# Authenticate and create Spotify Connection
+SPOTIFY = spotify_authenticate.authenticate()
+
+def get_audio_features():
+    global SPOTIFY
+    try:
+        open('../datasets/randomids.csv', 'r')
+    except:
+        print('[*] datasets/randomids.csv not found. Try running random_spotify_search first.')
+
+    # Read Track IDS
+    track_ids = pd.read_csv('../datasets/randomids.csv')
+    # Split into chunks
+    chunks = [track_ids.loc[i:i + 99] for i in range(1,len(track_ids),100)]
+
+    # Pull audio_features
+    track_features = pd.DataFrame()
+
+    count1 = 0
+    count2 = 100
+
+    for chunk in chunks:
+        print('Working on songs: {}-{}'.format(count1,count2))
+        features = SPOTIFY.audio_features(list(chunk['id']))
+        for track in features:
+            if track != None:
+                track_features = track_features.append(
+                {'danceability': track['danceability'],
+                 'energy': track['energy'],
+                 'key': track['key'],
+                 'loudness': track['loudness'],
+                 'mode': track['mode'],
+                 'speechiness': track['speechiness'],
+                 'acousticness': track['acousticness'],
+                 'instrumentalness': track['instrumentalness'],
+                 'liveness': track['liveness'],
+                 'valence': track['valence'],
+                 'tempo': track['tempo'],
+                 'id': track['id'],
+                 'duration_ms': track['duration_ms'],
+                 'time_signature': track['time_signature']
+                 }, ignore_index = True)
+
+        count1 = count2
+        count2 = count1 + 100
+
+    track_features = track_features.merge(track_ids, on='id')
+
+    return track_features
+
+def main():
+    get_audio_features().to_csv('../datasets/audio_features.csv', index = None)
+
+
+if __name__ == '__main__':
+    main()
