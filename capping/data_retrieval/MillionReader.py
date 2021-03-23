@@ -36,7 +36,6 @@ def read_spotify_id():
         except:
             SPOTIFY_IDS = SPOTIFY_IDS.append([[song,'']])
 
-
 def save_data():
     global SPOTIFY_IDS
     # Saves the SPOTIFY_ID DataFrame
