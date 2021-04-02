@@ -4,7 +4,7 @@ import config
 
 SPOTIFY = spotify_authenticate.authenticate()
 # List of target playlists
-target_genres = ['Rock','Jazz','EDM','R&B']
+target_genres = ['Rock','Pop','Country','Hip Hop','EDM', 'Jazz', 'Classical']
 
 def get_labeled_ids():
     global SPOTIFY

@@ -22,8 +22,9 @@ def get_audio_features(ids_path, out_path):
 
     count1 = 0
     count2 = 100
+    total = len(track_ids)
     for chunk in chunks:
-        print('Working on songs: {}-{}'.format(count1,count2))
+        print('Working on songs: {}-{} of {}'.format(count1,count2,total))
         features = SPOTIFY.audio_features(list(chunk['id']))
         for track in features:
             if track != None:
