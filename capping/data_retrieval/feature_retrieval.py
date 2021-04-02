@@ -5,7 +5,7 @@ import config
 # Authenticate and create Spotify Connection
 SPOTIFY = spotify_authenticate.authenticate()
 
-def get_audio_features(ids_path):
+def get_audio_features(ids_path, out_path):
     global SPOTIFY
     try:
         open(ids_path, 'r')
@@ -22,7 +22,6 @@ def get_audio_features(ids_path):
 
     count1 = 0
     count2 = 100
-
     for chunk in chunks:
         print('Working on songs: {}-{}'.format(count1,count2))
         features = SPOTIFY.audio_features(list(chunk['id']))
@@ -49,5 +48,5 @@ def get_audio_features(ids_path):
         count2 = count1 + 100
 
     track_features = track_features.merge(track_ids, on='id')
-    track_features.to_csv(config.unlabeled_features_path, index = None)
+    track_features.to_csv(out_path, index = None)
     return True

@@ -4,6 +4,7 @@ import random
 import pandas as pd
 
 
+
 # Authenticate and create Spotify Connection
 SPOTIFY = spotify_authenticate.authenticate()
 
@@ -24,6 +25,5 @@ def generate_random_ids(num_unqiue = 10000):
                             'artist_name': track['artists'][0]['name'],
                             'arstist_id': track['artists'][0]['id']}, ignore_index = True)
             ids.drop_duplicates(subset = 'name', inplace = True)
-
     ids.to_csv(config.random_ids_path, index = None)
     return True
