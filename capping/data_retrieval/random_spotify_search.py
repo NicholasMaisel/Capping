@@ -11,7 +11,7 @@ SPOTIFY = spotify_authenticate.authenticate()
 def random_query():
     random_char = random.choices('abcdefghijklmnopqrstuvwxyz', k = random.randrange(1,4))
     search_query = ''.join(random_char) + '%'
-    return(search_query)
+    return search_query
 
 def generate_random_ids(num_unqiue = 10000):
     global SPOTIFY
