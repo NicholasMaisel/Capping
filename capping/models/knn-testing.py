@@ -38,7 +38,7 @@ def knn_features_test(data):
 
     # Train-test split
     selected_combos = combinations(["acousticness","danceability","energy",
-                 "instrumentalness","liveness","loudness",
+                 "instrumentalness","liveness","loudness","key",
                  "valence","tempo"],6)
 
     scores = {}
@@ -78,7 +78,7 @@ def knn(data):
     # Train-test split
     data = full_data[['danceability', 'energy', 'instrumentalness',
      'loudness', 'valence', 'tempo', 'genre']]
-    print(data)
+
 
     x = data.iloc[:, :-1].values
     y = data.iloc[:, len(data.columns)-1].values
@@ -89,6 +89,7 @@ def knn(data):
     pipe.fit(x_train, y_train)
     y_pred = pipe.predict(x_test)
 
+    print(classification_report(y_test, y_pred))
     con_mat = confusion_matrix(y_test, y_pred, normalize = 'true')
     genres = ['Rock','Pop','Country','Hip Hop','EDM', 'Jazz', 'Classical']
     print(con_mat_to_df(con_mat, genres))

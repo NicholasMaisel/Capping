@@ -25,12 +25,17 @@ def get_labeled_ids():
                                                      offset = offset)
 
                 for track in [result['track'] for result in results['items']]:
+
                     labeled_song_ids = labeled_song_ids.append(
-                                    {'name':track['name'],
+                                    {'name':track['name'].replace(',',''),
                                      'id':track['id'],
-                                     'artist_name': track['artists'][0]['name'],
-                                     'arstist_id': track['artists'][0]['id'],
-                                     'genre': genre.split(' ')[-1]},
+                                     'artist_name': track['artists'][0]['name'].replace(',',''),
+                                     'artist_id': track['artists'][0]['id'],
+                                     'genre': genre.split(' ')[-1],
+                                     'release_date': track['album']['release_date']
+                                     },
                                      ignore_index = True)
 
+    # Remove Duplicates
+    labeled_song_ids = labeled_song_ids.drop_duplicates(subset="id")
     labeled_song_ids.to_csv(config.labeled_song_ids_path, index = False)

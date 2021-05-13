@@ -2,4 +2,4 @@ settings.py
 *.pyc
 MillionSongSubset
 .DS_Store
-cappingvenv/*
+cappingvenv/
