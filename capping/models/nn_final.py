@@ -42,6 +42,8 @@ opt = tf.keras.optimizers.Adam(learning_rate=0.025)
 model.compile(loss='sparse_categorical_crossentropy',optimizer=opt,metrics=['accuracy'])
 model.fit(x_train, y_train, epochs=100)
 model.evaluate(x_test, y_test)
+
+
 predictions = model.predict(x_test)
 predicted_classes = np.argmax(predictions, axis = 1)
 con_mat = confusion_matrix(y_test, predicted_classes)
