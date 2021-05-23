@@ -1,0 +1,430 @@
+---
+swagger: "2.0"
+info:
+  description: "This is a simple API"
+  version: "1.0.0"
+  title: "Simple Inventory API"
+  contact:
+    email: "you@your-company.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "virtserver.swaggerhub.com"
+basePath: "/NicholasMaisel/MusicCapping/1.0.0"
+schemes:
+- "https"
+paths:
+  /song:
+    get:
+      tags:
+      - "song"
+      summary: "Get all songs"
+      description: ""
+      operationId: "song_get"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "Sucess"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/song"
+      x-swagger-router-controller: "swagger_server.controllers.song_controller"
+  /song/filter:
+    get:
+      tags:
+      - "song"
+      summary: "Get all songs"
+      description: ""
+      operationId: "song_filter_get"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "songid"
+        in: "query"
+        description: "id of song to filter by"
+        required: false
+        type: "string"
+      - name: "genre"
+        in: "query"
+        description: "genre to filter songs by"
+        required: false
+        type: "string"
+      - name: "artist"
+        in: "query"
+        description: "artist to filter by"
+        required: false
+        type: "string"
+      responses:
+        "200":
+          description: "Sucess"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/song"
+      x-swagger-router-controller: "swagger_server.controllers.song_controller"
+  /artist:
+    get:
+      tags:
+      - "artist"
+      summary: "Get all artists"
+      operationId: "artist_get"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "Sucess"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/artist"
+      x-swagger-router-controller: "swagger_server.controllers.artist_controller"
+  /artist/filter:
+    get:
+      tags:
+      - "artist"
+      summary: "Get artists that meet filters"
+      description: ""
+      operationId: "artist_filter_get"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "genre"
+        in: "query"
+        description: "genre to filter songs by"
+        required: false
+        type: "string"
+      responses:
+        "200":
+          description: "Sucess"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/artist"
+      x-swagger-router-controller: "swagger_server.controllers.artist_controller"
+  /songfeature:
+    get:
+      tags:
+      - "songfeature"
+      summary: "Get all song features"
+      description: ""
+      operationId: "songfeature_get"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "Sucess"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/songfeature"
+      x-swagger-router-controller: "swagger_server.controllers.songfeature_controller"
+  /songfeature/filter:
+    get:
+      tags:
+      - "songfeature"
+      summary: "Get all song features that meet filters"
+      description: ""
+      operationId: "songfeature_filter_get"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "songid"
+        in: "query"
+        description: "id of song to filter by"
+        required: false
+        type: "string"
+      - name: "genre"
+        in: "query"
+        description: "genre to filter songs by"
+        required: false
+        type: "string"
+      - name: "artist"
+        in: "query"
+        description: "artist to filter by"
+        required: false
+        type: "string"
+      responses:
+        "200":
+          description: "Sucess"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/song"
+      x-swagger-router-controller: "swagger_server.controllers.songfeature_controller"
+  /lyrics:
+    get:
+      tags:
+      - "lyrics"
+      summary: "Get all lyrics"
+      description: ""
+      operationId: "lyrics_get"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "Sucess"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/lyrics"
+      x-swagger-router-controller: "swagger_server.controllers.lyrics_controller"
+  /lyrics/filter:
+    get:
+      tags:
+      - "lyrics"
+      summary: "Get all song lyrics that meet filters"
+      operationId: "lyrics_filter_get"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "songid"
+        in: "query"
+        description: "id of song to filter by"
+        required: false
+        type: "string"
+      - name: "genre"
+        in: "query"
+        description: "genre to filter songs by"
+        required: false
+        type: "string"
+      - name: "artist"
+        in: "query"
+        description: "artist to filter by"
+        required: false
+        type: "string"
+      responses:
+        "200":
+          description: "Sucess"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/song"
+      x-swagger-router-controller: "swagger_server.controllers.lyrics_controller"
+  /songfeature/{songid}:
+    get:
+      tags:
+      - "songfeature"
+      summary: "Gets song feature from song ID"
+      description: ""
+      operationId: "songfeature_songid_get"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "songid"
+        in: "path"
+        description: "id of song"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "Sucess"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/songfeature"
+      x-swagger-router-controller: "swagger_server.controllers.songfeature_controller"
+  /predict/input:
+    get:
+      tags:
+      - "prediction"
+      summary: "Access to the neural network"
+      description: ""
+      operationId: "predict_input_get"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "acousticness"
+        in: "query"
+        required: true
+        type: "number"
+      - name: "danceability"
+        in: "query"
+        required: true
+        type: "number"
+      - name: "duration_ms"
+        in: "query"
+        required: true
+        type: "integer"
+      - name: "energy"
+        in: "query"
+        required: true
+        type: "number"
+      - name: "instrumentalness"
+        in: "query"
+        required: true
+        type: "number"
+      - name: "musicalkey"
+        in: "query"
+        required: true
+        type: "integer"
+      - name: "liveness"
+        in: "query"
+        required: true
+        type: "number"
+      - name: "loudness"
+        in: "query"
+        required: true
+        type: "number"
+      - name: "mode"
+        in: "query"
+        required: true
+        type: "integer"
+      - name: "speechiness"
+        in: "query"
+        required: true
+        type: "number"
+      - name: "tempo"
+        in: "query"
+        required: true
+        type: "number"
+      - name: "timesignature"
+        in: "query"
+        required: true
+        type: "integer"
+      - name: "valence"
+        in: "query"
+        required: true
+        type: "number"
+      - name: "model_type"
+        in: "query"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "Sucess"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/prediction"
+      x-swagger-router-controller: "swagger_server.controllers.prediction_controller"
+definitions:
+  song:
+    type: "object"
+    properties:
+      songID:
+        type: "string"
+      SongName:
+        type: "string"
+      SongGenre:
+        type: "string"
+      ArtistID:
+        type: "string"
+    example:
+      ArtistID: "ArtistID"
+      SongGenre: "SongGenre"
+      SongName: "SongName"
+      songID: "songID"
+  artist:
+    type: "object"
+    properties:
+      ArtistID:
+        type: "string"
+      ArtistName:
+        type: "string"
+    example:
+      ArtistID: "ArtistID"
+      ArtistName: "ArtistName"
+  songfeature:
+    type: "object"
+    properties:
+      acousticness:
+        type: "number"
+        format: "float"
+      danceability:
+        type: "number"
+        format: "float"
+      duration_ms:
+        type: "integer"
+        format: "int64"
+      energy:
+        type: "number"
+        format: "float"
+      instrumentalness:
+        type: "number"
+        format: "float"
+      musicalkey:
+        type: "integer"
+        format: "int32"
+      liveness:
+        type: "number"
+        format: "float"
+      loudness:
+        type: "number"
+        format: "float"
+      mode:
+        type: "integer"
+        format: "int32"
+      speechiness:
+        type: "number"
+        format: "float"
+      tempo:
+        type: "number"
+        format: "float"
+      timesignature:
+        type: "integer"
+        format: "int32"
+      valence:
+        type: "number"
+        format: "float"
+      songid:
+        type: "string"
+    example:
+      loudness: 9.301444
+      liveness: 7.0614014
+      tempo: 4.145608
+      valence: 1.2315135
+      instrumentalness: 5.637377
+      danceability: 6.0274563
+      speechiness: 2.027123
+      duration_ms: 1
+      mode: 3
+      musicalkey: 2
+      acousticness: 0.8008282
+      timesignature: 7
+      songid: "songid"
+      energy: 5.962134
+  lyrics:
+    type: "object"
+    properties:
+      songid:
+        type: "string"
+      lyrics:
+        type: "string"
+        minLength: 0
+        maxLength: 75000
+    example:
+      songid: "songid"
+      lyrics: "lyrics"
+  prediction:
+    type: "object"
+    properties:
+      prediction:
+        type: "string"
+        minLength: 2
+        maxLength: 10
+    example:
+      prediction: "prediction"
