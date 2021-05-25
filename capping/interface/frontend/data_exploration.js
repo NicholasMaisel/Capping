@@ -53,6 +53,7 @@ function populate_table(url) {
     });
 }
 
+
 // generate a prediction from models using selected data
 function featurePredict(selectedData){
     songid = selectedData["songid"]

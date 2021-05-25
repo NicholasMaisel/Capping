@@ -1,0 +1,27 @@
+.hist-by-genre {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  height:100%;
+
+}
+
+.genre-hist {
+  display: flex;
+  flex-direction: column;
+  height:750px;
+  margin-top:1%
+
+}
+
+.main-container{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 80%;
+}
+
+.myHeader {
+  display: flex;
+  margin:1%;
+}
