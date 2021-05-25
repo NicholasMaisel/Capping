@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background-color: gray;
+  flex-direction:row;
+
+}
+.user-inputs {
+  display: flex;
+  align-self: center;
+  flex-direction:column;
+  background-color: gray;
+  width:100%;
+
+
+}

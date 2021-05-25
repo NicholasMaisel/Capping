@@ -1,0 +1,27 @@
+<html>
+<head>
+   <link rel="stylesheet" href="lyrical_exploration.css">
+   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"></script>
+</head>
+
+  <body>
+    <h3> Hello, welcome to the lyrical predictor interface. Please input the name of a song and artist.</h3>
+    <p> Please keep in mind that the prediction process does take time. The inputted song will be classified as Hip Hop, Rock, or Rap.</p>
+    <div class="container">
+      <div class="user-inputs">
+        <input type="text" id="song-input" value="Name of Song"></input>
+        <input type="text" id="artist-input" value="Name of Artist"></input>
+        <input type="button" value="Predict Genre" id="search-btn"></input>
+      </div>
+    </div>
+
+  <div id="predicted-genre">Predicted Genre: </div>
+  </body>
+
+  <script type="text/javascript" src='lyrical_exploration.js'></script>
+
+</html>

@@ -5,6 +5,7 @@ from swagger_server.models.prediction import Prediction  # noqa: E501
 from swagger_server import util
 
 from .saved_models.predict_from_models import predict as model_predictor
+from .saved_models.lyrics_predictor import one_step_predict
 
 
 def predict_input_get(acousticness, danceability, duration_ms, energy, instrumentalness, musicalkey, liveness, loudness, mode, speechiness, tempo, timesignature, valence, model_type):  # noqa: E501
@@ -76,4 +77,8 @@ def predict_lyrics_input_get(song, artist):  # noqa: E501
 
     :rtype: List[Prediction]
     """
-    return 'do some magic!'
+    print(song, artist)
+    prediction = one_step_predict(artist, song)
+
+
+    return prediction

@@ -1,72 +1,21 @@
 <html>
   <head>
-    <link rel="stylesheet" href="styles.css">
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <link rel="stylesheet" href="main_styles.css">
     <script
       src="https://code.jquery.com/jquery-3.6.0.js"
       integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
       crossorigin="anonymous"></script>
-
     </head>
+  </head>
+
   <body>
-    <div class="main-container">
-      <div class="sidebar">
-        <div class="sidebar-item">item1</div>
-        <div class="sidebar-item">item2</div>
-        <div class="sidebar-item">item3</div>
-    </div>
-
-    <div class="data-container">
-      <div id="data-table">data table</div>
-      <div type="from" id='data-table-form'>
-        <button id='song-btn'>Song Data</button>
-        <button id='artist-btn'>Artist Data</button>
-        <button id='feature-btn'>Audio Feature Data</button>
-        <input id='song-input' value='Search by Song Title'></input>
-        <input id='artist-input' value='Search by Artist Name'></input>
-        <input id='genre-input' value='Search by Genre'></input>
-      <button id='search-btn'>Search</button>
-
-      <div id='data-table-filter-radios'>
-        <div>
-          <input type="radio" id="artist-radio" name="filter-radio" value="artist" checked>Artists</br>
-          <input type="radio" id="song-radio" name="filter-radio" value="song">Songs</br>
-          <input type="radio" id="feature-radio" name="filter-radio" value="songfeature">Featues</br>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="predictions">
-      <table class="tg">
-        <thead>
-          <tr>
-            <th colspan="2" id="prediction-table-title">Model Predictions</th>
-          </tr>
-          <tr>
-            <th colspan="2" id="song-genre-actual">Actual: </th>
-          </tr>
-        </thead>
-      <tbody>
-        <tr>
-          <td>Neural Network Prediction</td>
-          <td id="nn-prediction-data"></td>
-        </tr>
-        <tr>
-          <td>K-NN Prediciton</td>
-          <td id="knn-prediction-data"></td>
-        </tr>
-        <tr>
-          <td>Ensemble Prediction</td>
-          <td id="ensemble-prediction-data"></td>
-        </tr>
-      </tbody>
-      </table>
+    <h3> Hello, Welcome to the Music Genre Prediction Tool</h3>
+    <div class="page-selector">
+      <input class="page-btns" type="button" id="data-exploration-btn">
+      <input class="page-btns" type="button" id="visual-exploration-btn">
+      <input class="page-btns" type="button" id="lyrical-exploration-btn">
     </div>
 
 
-</body>
-
-<script type="text/javascript" src='script.js'></script>
-
+  </body>
 </html>

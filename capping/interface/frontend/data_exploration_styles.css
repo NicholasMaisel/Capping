@@ -1,0 +1,75 @@
+
+.main-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content:flex-start;
+  align-items: center;
+  margin: 1%;
+
+}
+.sidebar-item {
+  display: flex;
+  margin: 1%;
+  justify-content: center;
+
+}
+
+.all-btns {
+  display: flex;
+  align-items: center;
+  justify-content:space-around;
+  margin:10px;
+
+}
+.all-inputs {
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  margin:10px;
+  justify-content:space-around;
+
+
+}
+
+.output-predictions{
+  display: flex;
+  flex-direction: row;
+}
+
+.data-container {
+  display: flex;
+  flex-direction: column;
+  height:100%;
+  width: 100%;
+
+}
+
+.data-item {
+  display: flex;
+  margin: 1%;
+  width: 100px;
+  height: 100px;
+  background-color: lightgreen;
+
+}
+
+.data-table {
+  display: flex;
+  width: 100%;
+  background-color: yellow;
+  margin: 1%;
+  height: 75%;
+}
+
+
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
