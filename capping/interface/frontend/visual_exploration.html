@@ -1,0 +1,48 @@
+<html>
+  <head>
+      <link rel="stylesheet" href="exploration_styles.css">
+      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+      <script
+        src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+        crossorigin="anonymous"></script>
+      </head>
+
+  <body>
+    <div class="main-container">
+    <div class='feature-selection'>
+    <label for="features-combo">Choose a feature:</label>
+      <select id='feature-combo' name="features-combo" value="" optionlist>
+        <option value="" selected="selected" hidden="hidden">Choose here</option>
+
+      <option>acousticness</option>
+      <option>danceability</option>
+      <option>duration_ms</option>
+      <option>energy</option>
+      <option>instrumentalness</option>
+      <option>liveness</option>
+      <option>loudness</option>
+      <option>speechiness</option>
+      <option>tempo</option>
+      <option>valence</option>
+    </select>
+  </div>
+    <div id="data-hist"></div>
+
+    <div class='hist-by-genre'>
+      <div class='genre-hist' id='rock-hist'></div>
+      <div class='genre-hist' id='pop-hist'></div>
+      <div class='genre-hist' id='edm-hist'></div>
+      <div class='genre-hist' id='hop-hist'></div>
+      <div class='genre-hist' id='country-hist'></div>
+      <div class='genre-hist' id='jazz-hist'></div>
+      <div class='genre-hist' id='classical-hist'></div>
+    </div>
+
+</div>
+
+  </body>
+
+  <script type="text/javascript" src='visual_exploration.js'></script>
+
+</html>
