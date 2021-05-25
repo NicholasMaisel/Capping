@@ -33,9 +33,95 @@ function populate_table(url) {
 
             var chart = new google.visualization.Table(document.getElementById('data-table'));
             chart.draw(data, options);
+            google.visualization.events.addListener(chart, 'select', selectHandler);
+
+            function selectHandler(e) {
+                selectedDict = {};
+
+                for(var col in data['cf']){
+                  col = parseInt(col);
+                  var row = chart.getSelection()[0].row;
+                  selectedDict[data['cf'][col].label] = data.getValue(row,col)
+              }
+              console.log(selectedDict)
+              //check if features
+              if (selectedDict.acousticness){featurePredict(selectedDict)};
+              // check if song
+              if (selectedDict.SongName){songPredict(selectedDict)};
+          }
         });
     });
 }
+
+// generate a prediction from models using selected data
+function featurePredict(selectedData){
+    songid = selectedData["songid"]
+    for(var val in selectedData ){
+      if(parseFloat(selectedData[val])){
+        selectedData[val]= parseFloat(selectedData[val])
+      }
+    }
+    //format url
+    url = 'http://127.0.0.1:8080/predict/input?'
+    for(var val in selectedDict){
+      url = url + val + '=' + selectedDict[val] + '&'
+    }
+    url = url + 'model_type=all'
+    $.ajax({
+      type: 'GET',
+      url: url,
+      success: function(data){
+        $('#nn-prediction-data').html(data.nn_prediction);
+        $('#ensemble-prediction-data').html(data.ensemble_prediction);
+        $('#knn-prediction-data').html(data.knn_prediction);
+      }
+    });
+    url = 'http://127.0.0.1:8080/song/filter?songid=' + songid;
+    console.log(url)
+    $.ajax({
+      type: 'GET',
+      url: url,
+      success: function(data){
+        console.log(data)
+        $('#song-genre-actual').html('Actual: ' + data[0].SongGenre)
+      }
+    })
+}
+
+
+
+//  generate a prediction from models using song information
+function songPredict(selectedDict){
+  // get song features
+  console.log(selectedDict)
+  url = "http://127.0.0.1:8080/songfeature/" + selectedDict.songID
+  $('#song-genre-actual').html('Actual: ' + selectedDict.SongGenre)
+  console.log(url)
+  $.ajax({
+    type: 'GET',
+    url: url,
+    success: function(data){
+      console.log(data)
+      data = data[0]
+      url = 'http://127.0.0.1:8080/predict/input?'
+      for(var val in data){
+        url = url + val + '=' + data[val] + '&'
+      }
+      url = url + 'model_type=all'
+      $.ajax({
+        type: 'GET',
+        url: url,
+        success: function(data){
+          $('#nn-prediction-data').html(data.nn_prediction);
+          $('#ensemble-prediction-data').html(data.ensemble_prediction);
+          $('#knn-prediction-data').html(data.knn_prediction);
+        }
+      });
+    }
+  });
+}
+
+
 
 // If all-values buttons are clicked
 $("#song-btn").click(function() {
@@ -63,7 +149,7 @@ $("#song-input").on('input', function() {
     $("#genre-input").prop("disabled", true);
     $("#artist-radio").prop('disabled', true);
     $("#search-btn").prop("disabled", true);
-    $("#song-radio").toggle("highlight");
+    $('#song-radio').prop("selected", false);
 });
 $("#genre-input").on('input', function() {
     $("#artist-input").prop("disabled", true);
