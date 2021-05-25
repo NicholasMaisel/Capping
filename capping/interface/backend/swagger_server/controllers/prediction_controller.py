@@ -62,3 +62,18 @@ def predict_input_get(acousticness, danceability, duration_ms, energy, instrumen
     prediction = model_predictor(input, model_type)
 
     return prediction
+
+
+def predict_lyrics_input_get(song, artist):  # noqa: E501
+    """Predict a songs genre
+
+     # noqa: E501
+
+    :param song: song to search by
+    :type song: str
+    :param artist: artist to search by
+    :type artist: str
+
+    :rtype: List[Prediction]
+    """
+    return 'do some magic!'

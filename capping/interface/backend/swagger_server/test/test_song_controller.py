@@ -19,7 +19,8 @@ class TestSongController(BaseTestCase):
         """
         query_string = [('songid', 'songid_example'),
                         ('genre', 'genre_example'),
-                        ('artist', 'artist_example')]
+                        ('artist', 'artist_example'),
+                        ('name', 'name_example')]
         response = self.client.open(
             '/NicholasMaisel/MusicCapping/1.0.0/song/filter',
             method='GET',

@@ -39,6 +39,21 @@ class TestPredictionController(BaseTestCase):
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
+    def test_predict_lyrics_input_get(self):
+        """Test case for predict_lyrics_input_get
+
+        Predict a songs genre
+        """
+        query_string = [('song', 'song_example'),
+                        ('artist', 'artist_example')]
+        response = self.client.open(
+            '/NicholasMaisel/MusicCapping/1.0.0/predict/lyrics/input',
+            method='GET',
+            content_type='application/json',
+            query_string=query_string)
+        self.assert200(response,
+                       'Response body is : ' + response.data.decode('utf-8'))
+
 
 if __name__ == '__main__':
     import unittest

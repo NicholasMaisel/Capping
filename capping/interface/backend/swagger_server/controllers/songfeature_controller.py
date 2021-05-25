@@ -4,10 +4,11 @@ import six
 from swagger_server.models.song import Song  # noqa: E501
 from swagger_server.models.songfeature import Songfeature  # noqa: E501
 from swagger_server import util
-
 from .db_util import query_to_dict
 
-def songfeature_filter_get(songid=None, genre=None, artist=None):  # noqa: E501
+
+
+def songfeature_filter_get(songid=None, genre=None, artist=None, name=None):  # noqa: E501
     """Get all song features that meet filters
 
      # noqa: E501
@@ -18,6 +19,8 @@ def songfeature_filter_get(songid=None, genre=None, artist=None):  # noqa: E501
     :type genre: str
     :param artist: artist to filter by
     :type artist: str
+    :param name: artist to filter by
+    :type name: str
 
     :rtype: List[Song]
     """
@@ -64,6 +67,9 @@ def songfeature_filter_get(songid=None, genre=None, artist=None):  # noqa: E501
 
     if songid:
         query = query + " {} SongFeatures.SongID = '{}'".format(songid)
+
+    if name:
+        query = query + " JOIN Songs ON Songs.SongID = SongFeatures.SongID WHERE Songs.SongName = '{}'".format(name)
 
     results = query_to_dict(query)
     features_list = []
@@ -116,6 +122,7 @@ def songfeature_get():  # noqa: E501
                     songid= r['SongID']))
     return features_list
 
+
 def songfeature_songid_get(songid):  # noqa: E501
     """Gets song feature from song ID
 
@@ -126,4 +133,23 @@ def songfeature_songid_get(songid):  # noqa: E501
 
     :rtype: List[Songfeature]
     """
-    return 'do some magic!'
+    query = "SELECT * FROM SongFeatures WHERE SongID = '{}'".format(songid)
+    results = query_to_dict(query)
+    features_list = []
+    for r in results:
+        features_list.append(
+        Songfeature(acousticness= r['Acousticness'],
+                    danceability= r['Danceability'],
+                    duration_ms= r['Duration_ms'],
+                    energy= r['Energy'],
+                    instrumentalness= r['Instrumentalness'],
+                    musicalkey= r['MusicalKey'],
+                    liveness= r['Liveness'],
+                    loudness= r['Loudness'],
+                    mode= r['Mode'],
+                    speechiness= r['Speechiness'],
+                    tempo= r['Tempo'],
+                    timesignature= r['Time_signature'],
+                    valence= r['Valence'],
+                    songid= r['SongID']))
+    return features_list

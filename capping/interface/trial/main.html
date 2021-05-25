@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="styles.css">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"></script>
+
+    </head>
+  <body>
+    <div class="main-container">
+      <div class="sidebar">
+        <div class="sidebar-item">item1</div>
+        <div class="sidebar-item">item2</div>
+        <div class="sidebar-item">item3</div>
+    </div>
+
+    <div class="data-container">
+      <div id="data-table">data table</div>
+      <div type="from" id='data-table-form'>
+        <button id='song-btn'>Song Data</button>
+        <button id='artist-btn'>Artist Data</button>
+        <button id='feature-btn'>Audio Feature Data</button>
+        <input id='song-input' value='Search by Song Title'></input>
+        <input id='artist-input' value='Search by Artist Name'></input>
+        <input id='genre-input' value='Search by Genre'></input>
+      <button id='search-btn'>Search</button>
+
+      <div id='data-table-filter-radios'>
+        <div>
+          <input type="radio" id="artist-radio" name="filter-radio" value="artist" checked>Artists</br>
+          <input type="radio" id="song-radio" name="filter-radio" value="song">Songs</br>
+          <input type="radio" id="feature-radio" name="filter-radio" value="songfeature">Featues</br>
+        </div>
+      </div>
+
+    </div>
+
+
+</body>
+
+<script type="text/javascript" src='script.js'></script>
+
+</html>

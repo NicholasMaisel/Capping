@@ -3,10 +3,10 @@ import six
 
 from swagger_server.models.song import Song  # noqa: E501
 from swagger_server import util
-
 from .db_util import query_to_dict
 
-def song_filter_get(songid=None, genre=None, artist=None):  # noqa: E501
+
+def song_filter_get(songid=None, genre=None, artist=None, name=None):  # noqa: E501
     """Get all songs
 
      # noqa: E501
@@ -22,7 +22,6 @@ def song_filter_get(songid=None, genre=None, artist=None):  # noqa: E501
     """
     query = "SELECT * FROM Songs"
     multi_flag = "WHERE"
-
     if artist:
         query = query + " JOIN Artists ON Songs.ArtistID = Artists.ArtistID WHERE Artists.ArtistName = '{}'".format(artist)
         multi_flag = "AND"
@@ -35,7 +34,10 @@ def song_filter_get(songid=None, genre=None, artist=None):  # noqa: E501
         query = query + " {} SongGenre = '{}'".format(multi_flag ,genre)
         multi_flag = "AND"
 
-    print(query)
+    if name:
+        query = query + " {} SongName = '{}'".format(multi_flag, name)
+        multi_flag = "AND"
+
     result = query_to_dict(query)
     song_list = []
     for r in result:

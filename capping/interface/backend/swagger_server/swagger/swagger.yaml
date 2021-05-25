@@ -3,14 +3,14 @@ swagger: "2.0"
 info:
   description: "This is a simple API"
   version: "1.0.0"
-  title: "Simple Inventory API"
+  title: "DataCapping"
   contact:
     email: "you@your-company.com"
   license:
     name: "Apache 2.0"
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
 host: "virtserver.swaggerhub.com"
-basePath: "/NicholasMaisel/MusicCapping/1.0.0"
+basePath: "/"
 schemes:
 - "https"
 paths:
@@ -61,6 +61,11 @@ paths:
         description: "artist to filter by"
         required: false
         type: "string"
+      - name: "name"
+        in: "query"
+        description: "song name to filter by"
+        required: false
+        type: "string"
       responses:
         "200":
           description: "Sucess"
@@ -100,7 +105,12 @@ paths:
       parameters:
       - name: "genre"
         in: "query"
-        description: "genre to filter songs by"
+        description: "genre to filter artists by"
+        required: false
+        type: "string"
+      - name: "name"
+        in: "query"
+        description: "name to filter artists by"
         required: false
         type: "string"
       responses:
@@ -154,6 +164,11 @@ paths:
         required: false
         type: "string"
       - name: "artist"
+        in: "query"
+        description: "artist to filter by"
+        required: false
+        type: "string"
+      - name: "name"
         in: "query"
         description: "artist to filter by"
         required: false
@@ -311,6 +326,35 @@ paths:
         type: "number"
       - name: "model_type"
         in: "query"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "Sucess"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/prediction"
+      x-swagger-router-controller: "swagger_server.controllers.prediction_controller"
+  /predict/lyrics/input:
+    get:
+      tags:
+      - "prediction"
+      summary: "Predict a songs genre"
+      operationId: "predict_lyrics_input_get"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "song"
+        in: "query"
+        description: "song to search by"
+        required: true
+        type: "string"
+      - name: "artist"
+        in: "query"
+        description: "artist to search by"
         required: true
         type: "string"
       responses:

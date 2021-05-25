@@ -17,7 +17,8 @@ class TestArtistController(BaseTestCase):
 
         Get artists that meet filters
         """
-        query_string = [('genre', 'genre_example')]
+        query_string = [('genre', 'genre_example'),
+                        ('name', 'name_example')]
         response = self.client.open(
             '/NicholasMaisel/MusicCapping/1.0.0/artist/filter',
             method='GET',

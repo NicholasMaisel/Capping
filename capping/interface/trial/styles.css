@@ -1,0 +1,45 @@
+
+.main-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  justify-content:flex-start;
+  background-color: lightblue;
+  margin: 1%;
+
+}
+.sidebar-item {
+  display: flex;
+  margin: 1%;
+
+}
+
+.data-container {
+  display: flex;
+  flex-direction: column;
+  height:100%;
+  width: 75%;
+
+}
+
+.data-item {
+  display: flex;
+  margin: 1%;
+  width: 100px;
+  height: 100px;
+  background-color: lightgreen;
+
+}
+
+.data-table {
+  display: flex;
+  width: 100%;
+  background-color: yellow;
+  margin: 1%;
+  height: 75%;
+}
