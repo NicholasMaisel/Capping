@@ -43,6 +43,16 @@ def predict_from_ensemble(input):
     prediction = genres[model.predict(input)[0]]
     return prediction
 
+def predict_from_svm(input):
+    keys = ["acousticness","danceability","energy","duration_ms",
+                 "instrumentalness","loudness","liveness","speechiness",
+                 "valence","tempo"]
+    input = [[input[key] for key in keys]]
+    model = load('swagger_server/controllers/saved_models/saved_svm.joblib')
+    prediction = model.predict(input)[0]
+
+    return prediction
+
 
 def predict(input, model):
     if model == "nn":
@@ -51,10 +61,13 @@ def predict(input, model):
         prediction = predict_from_knn(input)
     if model == "ensemble":
         prediction = predict_from_ensemble(input)
+    if model == "svm":
+        prediction = predict_from_svm(input)
     if model == "all":
         prediction = {"nn_prediction": predict_from_nn(input),
                       "knn_prediction": predict_from_nn(input),
-                      "ensemble_prediction": predict_from_ensemble(input)}
+                      "ensemble_prediction": predict_from_ensemble(input),
+                      "svm_prediction": predict_from_svm(input)}
 
 
     return prediction

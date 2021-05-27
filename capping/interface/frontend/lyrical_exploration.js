@@ -1,4 +1,6 @@
 $("#search-btn").on('click', function(){
+  $("#predicted-genre").html("Predicted Genre: ");
+
   songName = "song="+ $("#song-input").val() + "&"
   artistName = "artist=" + $("#artist-input").val()
   url = "http://127.0.0.1:8080/predict/lyrics/input?" + songName + artistName

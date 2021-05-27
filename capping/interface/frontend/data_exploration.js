@@ -116,6 +116,8 @@ function songPredict(selectedDict){
           $('#nn-prediction-data').html(data.nn_prediction);
           $('#ensemble-prediction-data').html(data.ensemble_prediction);
           $('#knn-prediction-data').html(data.knn_prediction);
+          $('#svm-prediction-data').html(data.svm_prediction);
+
         }
       });
     }
